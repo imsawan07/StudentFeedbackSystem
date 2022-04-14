@@ -1,0 +1,25 @@
+<%- include ("partials/header") %>
+<%- include ("partials/navbar") %>
+
+<div class="mainContainer4">
+  
+    <%- include ("partials/errors") %>
+
+    <div class="forgotPassContainer">
+        <form class="loginForm" action="/verifyForgotEmail" method="post">
+            <span class="forgotPassHeading">Forgot Password ?</span> <br>
+            <h6 style = "color:white;" class = "abcde">Enter your email ID with which you have registered.</h6>
+            <h6 style = "color:white;" class = "abcde">We will send you a link to reset your password</h6>
+
+            <div class="form-group forgotPassEmailForm">
+               <label for="exampleInputEmail1" class="label">Email address</label>
+               <input type="email" class="form-control" id="exampleInputEmail1" name="email" aria-describedby="emailHelp" placeholder="Enter email">
+            </div>
+            <button type="submit" id="SubmitBtn" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+</div>
+
+<%- include ("partials/footer") %>
+
+

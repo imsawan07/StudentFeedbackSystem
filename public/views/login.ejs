@@ -1,0 +1,52 @@
+<%- include ("partials/header") %>
+<div class="mainContainer1">
+    <nav class="navbar navbar-light bg-light">
+       <a class="navbar-brand navTop">
+       <img src="images/logo1.png" class="navLogo d-inline-block align-top" alt="">
+       <span class="navbarTitle">Feedback System</span>
+       </a>
+    </nav>
+
+
+<div class="mainContainer2">
+    
+    <%- include ("partials/errors") %>
+    
+        <div class="loginContainer">
+            <form class="loginForm" action="/login" method="post">
+                <span class="loginHeading">Student Feedback System Login Form</span>
+                <div class="radioHeader">
+                    <div class="custom-control custom-radio radioButton">
+                        <input type="radio" class="adminLoginOption custom-control-input" id="customControlValidation1" name="radio" value="admin" required>
+                        <label class="custom-control-label label labelName" for="customControlValidation1">Admin</label>
+                    </div>
+                    <div class="custom-control custom-radio radioButton">
+                        <input type="radio" class="studentLoginOption custom-control-input" id="customControlValidation2" name="radio" value="student" checked required>
+                        <label class="custom-control-label label labelName" for="customControlValidation2">Student</label>
+                    </div>
+                </div>
+    
+                <div class="form-group emailForm">
+                   <label for="exampleInputEmail1" class="label">Email address</label>
+                   <input type="email" class="form-control" id="exampleInputEmail1" name="email" aria-describedby="emailHelp" placeholder="Enter email">
+                </div>
+                <div class="form-group">
+                   <label for="exampleInputPassword1" class="label">Password</label>
+                   <input type="password" class="form-control" id="exampleInputPassword1" name="password" placeholder="Password">
+                </div>
+                <button type="submit" id="SubmitBtn" class="btn btn-primary">Submit</button>
+            </form>
+            <div class="loginLinks">
+                <a href="/register" id="registerLink">Sign Up?</a>
+                <a href="/forgotPassword" id="forgotPass">Forgot Password</a>
+            </div>
+        </div>
+    
+</div>
+
+<%- include ("partials/footer") %>
+    
+
+  
+
+

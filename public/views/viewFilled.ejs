@@ -1,0 +1,58 @@
+<%- include ("partials/header") %>
+<%- include ("partials/navbar") %>
+
+<div class="mainContainer2">
+  <%- include ("partials/errors") %>
+
+
+    <div class="loginContainer2">
+
+            <h1>Filled Feedback Forms</h1>
+            <h5><%=user.email%></h5>
+
+            <!-- ct is the number of feedback forms created by user -->
+            <!-- ctt is the number of feedback forms which have received responses -->
+            <% var ct = feedbackforms.length %>
+
+            <% var ctt=0%>
+            <% for(var i=0; i<ct; i++){ %>
+            <% if(feedbackforms[i].questions[0].question.responses.length!=0){%>
+            <% ctt++ }%>
+            <% } %>
+
+            <% if(ct!=0){ %>
+              
+              <h5>You have created <%=ct%> feedback forms out of which <%=ctt%> have received responses</h5><br>
+              <% for(var i=0; i<ct; i++){ %>
+                <a href="/viewresponses/<%=feedbackforms[i]._id%>"> 
+                  <button type="submit" id="SubmitBtn3" class="btn btn-info">
+                    <h3>Feedback Form <%=i+1%></h3>
+                    Branch : <%=feedbackforms[i].branch%>  
+                    <h5>Year : <%=feedbackforms[i].year%> </h5>
+                    Number of responses: <%=feedbackforms[i].questions[0].question.responses.length%></button>
+                  </button>
+                </a> 
+                
+                <br><br>
+                
+              <% } %>
+
+
+
+            <% }else{ %>
+              <h4>You have not created a feedback form yet!</h4><br>
+              <a href="/createnewform"> <button type="submit" class="btn btn-primary">Create New Feedback Form</button> </a>
+            <% } %>
+                   
+ 
+            
+    </div>    
+  </div>
+<%- include ("partials/footer") %>
+
+
+
+
+
+   
+ 

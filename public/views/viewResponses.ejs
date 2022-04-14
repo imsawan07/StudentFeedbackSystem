@@ -1,0 +1,164 @@
+<%- include ("partials/header") %>
+
+<nav class="navbar navbar-light bg-light">
+  
+    <a class="navbar-brand navTop">
+    <img src="/images/logo1.png" class="navLogo d-inline-block align-top" alt="">
+    <span class="navbarTitle">Feedback System</span>
+    </a>
+    <div class="btn-group">
+    <a href="/visualRepresentation/<%=form._id%>"><button type="submit" class="logoutBtn btn btn-outline-info">View Visual Representation</button></a>
+    <!-- <button type="submit" class="logoutBtn btn btn-outline-primary">View All Responses</button> -->
+
+
+  <!-- Button trigger modal -->
+  <button type="button" class="logoutBtn btn btn-outline-dark" data-toggle="modal" data-target="#exampleModalLong5">
+    View all Responses
+    </button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModalLong5" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+      <div class="modal-dialog largeModal" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">All Responses</h5>
+            
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            
+          </div>
+          
+          <div class="modal-body">
+
+            
+            <% for(var i=0; i<questions[0].question.responses.length ; i++){ %>
+              <% for(var j=0; j<questions.length; j++){ %>
+                  <h5 style="text-align: center;"><%=questions[j].question.responses[i].ans%></h5>
+              <% } %>
+              <br><br>
+            <% } %>   
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    
+
+    <!-- Button trigger modal -->
+    <button type="button" class="logoutBtn btn btn-outline-danger" data-toggle="modal" data-target="#exampleModal">
+      Delete Form
+    </button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Delete Feedback Form</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            All the responses will also be deleted on deleting the form. Are you sure ?
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <a href="/deleteform/<%=form._id%>"><button class="btn btn-danger">Delete</button></a>
+          </div>
+        </div>
+      </div>
+    </div>
+        
+
+    <form action="/logOut" method="post">
+      <button type="submit" class="logoutBtn btn btn-outline-success">Logout</button>
+    </form>
+  </div>
+</nav> 
+    
+
+<div class = "abcde">
+
+
+  <% if(questions[0].question.responses.length == 0){ %>
+    <br><br><h3>No one has responded to this form yet!</h3><br>
+    <a href="/deleteform/<%=form._id%>"><button class="btn btn-danger">Delete this Feedback Form</button></a>
+
+  <% }else{ %>
+  <br>
+  
+    <h3>Responses</h3>
+    <h6>Branch : <%=form.branch%></h6>
+    <h6>Year : <%=form.year%></h6> 
+    <h6>Created on <%=form.date%></h6> <br>
+        
+    
+
+    <% for(var i=0; i<questions.length; i++){ %>
+
+
+      <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+          <h3><%=questions[i].question.text%></h3>
+          <hr class="my-4">
+          <div class="btn-group">
+            <a href="/getsummary/<%=form._id%>/<%=i+1%>">
+            <button type="submit" class="logoutBtn btn btn-outline-info btn">View summary of all responses for this question</button>
+            </a>
+           
+
+        <!-- Button trigger modal -->
+            
+        
+          <button type="button" class="btn btn btn-outline-primary" data-toggle="modal" data-target="#exampleModalLong<%=i%>">
+          View all responses for this question
+          </button>
+        
+        
+  
+          <!-- Modal -->
+          <div class="modal fade" id="exampleModalLong<%=i%>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+            <div class="modal-dialog mediumModal" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLongTitle"><%=questions[i].question.text%></h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                <% for(var j=0; j<questions[i].question.responses.length; j++){ %>
+                      <h5><%=questions[i].question.responses[j].ans%></h5>
+                      <br>
+                <% }  %>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+          
+        </div>
+     </div>
+      
+    <% } %>
+<%}%>
+</div>
+
+<!-- <script>
+  function fun(){
+    alert("Creating the summary of all responses might take upto 20 seconds. Click OK to continue");
+  }
+</script> -->
+
+
+<%- include ("partials/footer") %>
+
